@@ -193,7 +193,7 @@ public class SwingGui  extends JFrame{
 			
 			ListViewGui listView = new ListViewGui(resultList);
 			listView.setVisible(true);
-			searchProcessBar.setValue(0);
+			//searchProcessBar.setValue(0);
 		}
 		
 	}
