@@ -45,6 +45,7 @@ public class SwingGui  extends JFrame{
 		//获取搜索路径控件
 		baseLabel = new JLabel("Base Folder:");
 		baseText = new JTextField();
+		baseText.setEditable(false);
 		buttonBrowse= new JButton("Browse");
 		//为button添加文件夹选择事件处理
 		buttonBrowse.addActionListener(new ButtonBrowseHandler());
@@ -118,7 +119,7 @@ public class SwingGui  extends JFrame{
 	
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			String dirPath = baseText.getText();
+			String dirPath = baseText.getText().trim();
 			String keyWords = keywordText.getText();
 			fileSearcher searcher = new fileSearcher(dirPath,keyWords);
 			searcher.execute();
