@@ -1,4 +1,8 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileSearcherNoCaseSensitive implements FileSearch{
@@ -32,6 +36,7 @@ public class FileSearcherNoCaseSensitive implements FileSearch{
 		
 	}
 	
+	//按照文件名搜索
 	public boolean fileNameMatch(String keyWord, String fileName) {
 		String tempKeyWord = keyWord.toLowerCase();
 		String tempName = fileName.toLowerCase();
@@ -42,6 +47,32 @@ public class FileSearcherNoCaseSensitive implements FileSearch{
 			
 			return false;
 		}
+	}
+	
+	// 文件内容搜索，按行搜索
+	public boolean fileContentMatch(String filePath, String keyWord) {
+		boolean result = false;
+		File f = new File(filePath);
+		try {
+			FileReader fr = new FileReader(f);
+			BufferedReader br = new BufferedReader(fr);
+			String s = br.readLine().toLowerCase();
+			while (s != null) {
+				int num = s.indexOf(keyWord.toLowerCase());// 获得s所在的下标，
+				if (num != -1) {
+					result = true;
+					break;
+				}
+				s = br.readLine();
+			}
+			br.close();// 关闭缓冲读入流及文件读入流的连接.
+		} catch (FileNotFoundException e1) {
+			System.err.println("File not found: " + filePath);
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+
+		return result;
 	}
 
 }

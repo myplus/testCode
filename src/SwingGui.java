@@ -166,18 +166,16 @@ public class SwingGui  extends JFrame{
 			ArrayList<FileProperty> fileList = new ArrayList<FileProperty>();
 			fileSearch.searchFile(basePath, keyWords, fileList);
 			// System.out.println("before remove:"+resultList.size());
-			for (int i = 0; i < fileList.size(); i++) {
-				if (fileSearch.fileNameMatch(keyWords, fileList.get(i).getFileName())) {
+			for (int i = 0; i < fileList.size(); i++) {				
+				if (fileSearch.fileContentMatch(fileList.get(i).getFilePath(), keyWords)) {
 					resultList.add(fileList.get(i));
 				}
-
-				double totalFiles = fileList.size() - 1;
-				double proportion = ((double) i / totalFiles) * 100;
+				double totalFiles = fileList.size();
+				double proportion = ((double) (i+1) / totalFiles) * 100;
 				Double tempDouble = new Double(proportion);
 
 				publish(tempDouble.intValue());
 			}
-
 			return true;
 			// return null;
 		}
