@@ -33,7 +33,7 @@ public class SwingGui  extends JFrame{
 	private JButton searchButton;
 	
 	//进度条控件
-	private JProgressBar searchProcessBar;
+	public JProgressBar searchProcessBar;
 	
 	//是否开启大小写敏感
 	private boolean isCaseSensitive;
@@ -192,7 +192,7 @@ public class SwingGui  extends JFrame{
 		@Override
 		protected void done() {
 			
-			ListViewGui listView = new ListViewGui(resultList);
+			ListViewGui listView = new ListViewGui(resultList,SwingGui.this);
 			listView.setVisible(true);
 			//searchProcessBar.setValue(0);
 		}

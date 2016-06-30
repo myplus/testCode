@@ -1,5 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -12,10 +14,19 @@ import javax.swing.table.DefaultTableModel;
 public class ListViewGui extends JFrame {
 
 	private ArrayList<FileProperty> fileItemList;
+	private SwingGui mainFrame;
 
-	public ListViewGui(ArrayList<FileProperty> fileItemList) {
+	public ListViewGui(ArrayList<FileProperty> fileItemList,SwingGui mainFrame) {
 		super("File List");
 		this.fileItemList = fileItemList;
+		this.mainFrame = mainFrame;
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+
+				mainFrame.searchProcessBar.setValue(0);
+			}
+		});
 		setBounds(100, 100, 500, 400);
 		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initComponent();
@@ -69,5 +80,8 @@ public class ListViewGui extends JFrame {
 		};
 
 	}
+	
+	
+	
 
 }
