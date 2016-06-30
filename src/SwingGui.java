@@ -58,6 +58,7 @@ public class SwingGui  extends JFrame{
 		
 		//搜索控件初始化
 		searchButton = new JButton("Search");
+		searchButton.setEnabled(false);
 		searchButton.addActionListener(new searchButtonHandler());
 		
 		//进度条控件初始化
@@ -104,6 +105,7 @@ public class SwingGui  extends JFrame{
 			File file=jfc.getSelectedFile();
 			if(file.isDirectory()){
 				baseText.setText(file.getAbsolutePath());
+				searchButton.setEnabled(true);
 				System.out.println("Directory:"+file.getAbsolutePath());
 				
 			}else if(file.isFile()){
@@ -180,7 +182,7 @@ public class SwingGui  extends JFrame{
 			// return null;
 		}
 		
-
+		//显示进度条
 		protected void process(List<Integer> chunks) {
 			Integer value = chunks.get(chunks.size() - 1);
 

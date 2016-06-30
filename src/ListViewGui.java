@@ -21,11 +21,13 @@ public class ListViewGui extends JFrame {
 		initComponent();
 	}
 
+	//初始化文件列表显示组件
 	private void initComponent() {
 		String[] columnNames = { "File Name", "File Path" };
 		Object[][] cellData = null;
 		DefaultTableModel tableModel = new myDefaultTableModel(cellData, columnNames);
 		JTable table = new JTable(tableModel);
+		table.setRowHeight(30);
 
 		table.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
